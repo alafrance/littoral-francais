@@ -8,9 +8,9 @@ import os
 
 
 def main():
-    if not os.path.exists("../../.env"):
+    if not os.path.exists("../../../.env"):
         raise Exception("Please create a .env file with your credentials.")
-    load_dotenv("../../.env")
+    load_dotenv("../../../.env")
     client = Client()
     client.session.headers.update({'Accept': 'application/json'})
 
