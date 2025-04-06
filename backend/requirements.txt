@@ -161,7 +161,6 @@ terminado==0.18.1
 tinycss2==1.4.0
 toolz==1.0.0
 tornado==6.4.2
-tqdm @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_5642tzrprr/croot/tqdm_1738943467095/work
 traitlets==5.14.3
 typer==0.15.2
 types-python-dateutil==2.9.0.20241206
