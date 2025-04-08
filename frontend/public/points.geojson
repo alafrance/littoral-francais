@@ -1,0 +1,32 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {
+          "id": "pointA",
+          "taille": "small",
+          "couleur": "rouge",
+          "opacite": 0.5
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [2.3, 48.85]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "id": "pointB",
+          "taille": "large",
+          "couleur": "bleu",
+          "opacite": 0.8
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [2.35, 48.86]
+        }
+      }
+    ]
+  }
+  

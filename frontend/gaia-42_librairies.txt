@@ -1,0 +1,39 @@
+gaia-42_librairies.txt
+
+
+liste des packages et librairies nécessaires pour le frontend 
+React, OpenLayers, et d'autres outils liés :
+
+1. React et dépendances associées :
+
+npm install react@18 react-dom@18
+npm install vite @vitejs/plugin-react
+npm install ol
+npm install axios  # si tu veux faire des requêtes HTTP
+npm install sass    # si tu utilises SCSS/SASS pour les styles
+
+# Optionnel : si tu veux intégrer Leaflet aussi
+npm install react-leaflet leaflet
+
+# Si tu utilises React Router pour la navigation
+npm install react-router-dom
+
+# Si tu veux utiliser Redux
+npm install redux react-redux
+
+# Si tu utilises des styled-components
+npm install styled-components
+
+# Pour les icônes
+npm install react-icons
+
+# Pour des animations (si tu en as besoin)
+npm install framer-motion
+
+
+
+
+Ensuite, lancer le serveur Vite avec la commande :
+
+npm run dev
+
