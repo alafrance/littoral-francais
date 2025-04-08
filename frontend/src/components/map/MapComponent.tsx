@@ -11,7 +11,8 @@ import { Feature } from "ol";
 import { fromLonLat } from "ol/proj";
 import { Style, Fill } from "ol/style";
 import Overlay from "ol/Overlay";
-import axios from "axios";
+// import axios from "axios";
+import {useSelector} from "react-redux";
 
 interface PointData {
   lon: number;
@@ -22,16 +23,17 @@ interface PointData {
 }
 
 interface MapComponentProps {
-  activeSets: string[];
-  year: number;
   pulseRedPoints?: boolean;
 }
 
-const MapComponent: React.FC<MapComponentProps> = ({ activeSets, year, pulseRedPoints = true }) => {
+const MapComponent: React.FC<MapComponentProps> = ({pulseRedPoints = true }) => {
+  const year = useSelector((state: any) => state.timeline.year);
+  const activeSets = useSelector((state: any) => state.sidebar.activeSets);
+
   const mapRef = useRef<HTMLDivElement>(null);
   const popupRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<Overlay | null>(null);
-  const layersRef = useRef<Record<string, VectorLayer>>( {} );
+  const layersRef = useRef<Record<string, VectorLayer>>({});
   const [map, setMap] = useState<Map | null>(null);
 
   const COLORS: Record<string, string> = {
@@ -42,11 +44,11 @@ const MapComponent: React.FC<MapComponentProps> = ({ activeSets, year, pulseRedP
 
   const staticData: Record<string, PointData[]> = {
     red: [
-      { lon: 3.0333, lat: 43.1833, sizeKm: 50, opacity: 0.4, label: "Zone rouge : Sète" },
-      { lon: -1.9336, lat: 46.7075, sizeKm: 100, opacity: 0.4, label: "Zone rouge : La Rochelle" },
+      {lon: 3.0333, lat: 43.1833, sizeKm: 50, opacity: 0.4, label: "Zone rouge : Sète"},
+      {lon: -1.9336, lat: 46.7075, sizeKm: 100, opacity: 0.4, label: "Zone rouge : La Rochelle"},
     ],
     violet: [
-      { lon: -4.4944, lat: 48.3904, sizeKm: 200, opacity: 0.4 },
+      {lon: -4.4944, lat: 48.3904, sizeKm: 200, opacity: 0.4},
     ],
   };
 
@@ -96,7 +98,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ activeSets, year, pulseRedP
       const points = staticData[setName];
       if (!points) return;
 
-      const features = points.map(({ lon, lat, sizeKm, opacity, label }) => {
+      const features = points.map(({lon, lat, sizeKm, opacity, label}) => {
         const center = fromLonLat([lon, lat]);
         const radiusMeters = sizeKm * 1000;
         const circle = new CircleGeometry(center, radiusMeters);
@@ -117,14 +119,14 @@ const MapComponent: React.FC<MapComponentProps> = ({ activeSets, year, pulseRedP
         return feature;
       });
 
-      const vectorSource = new VectorSource({ features });
-      const vectorLayer = new VectorLayer({ source: vectorSource });
+      const vectorSource = new VectorSource({features});
+      const vectorLayer = new VectorLayer({source: vectorSource});
 
       // 🎯 Si rouge, ajouter l'effet de pulse si activé
       if (setName === "red" && pulseRedPoints) {
         vectorLayer.on('postrender', (event) => {
           const frameState = event.frameState;
-          const elapsed = frameState.time % 1000; // cyclique 0-1000 ms
+          const elapsed = frameState?.time ?? 0 % 1000; // cyclique 0-1000 ms
           const scale = 1 + 0.05 * Math.sin((elapsed / 1000) * 2 * Math.PI); // Pulse doux
 
           vectorSource.getFeatures().forEach((feature) => {
@@ -195,7 +197,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ activeSets, year, pulseRedP
     try {
       const yellowPoints: PointData[] = simulateBackendYellowPoints(year);
 
-      const newFeatures = yellowPoints.map(({ lon, lat, sizeKm }) => {
+      const newFeatures = yellowPoints.map(({lon, lat, sizeKm}) => {
         const center = fromLonLat([lon, lat]);
         const circle = new CircleGeometry(center, sizeKm * 1000);
         const feature = new Feature(circle);
@@ -240,7 +242,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ activeSets, year, pulseRedP
 
   function simulateBackendYellowPoints(year: number): PointData[] {
     const baseCount = 10 + Math.floor((year - 1800) / 10);
-    return Array.from({ length: baseCount }).map(() => ({
+    return Array.from({length: baseCount}).map(() => ({
       lon: -5 + Math.random() * 10,
       lat: 43 + Math.random() * 5,
       sizeKm: 5 + Math.random() * 20,
@@ -250,17 +252,13 @@ const MapComponent: React.FC<MapComponentProps> = ({ activeSets, year, pulseRedP
 
   return (
     <div
-      style={{
-        position: "relative",
-        width: "100%",
-        height: "calc(70vh )",  // Carte prend une fraction la hauteur
-      }}
+      className={"w-full flex-1 relative"}
     >
       <div
         ref={mapRef}
         style={{
           width: "100%",
-          height: "85%",
+          height: "100%",
         }}
       />
       <div
@@ -280,43 +278,6 @@ const MapComponent: React.FC<MapComponentProps> = ({ activeSets, year, pulseRedP
           fontSize: "0.8rem",
         }}
       />
-      {/* Timeline */}
-      <div
-        className="timeline-container"
-        style={{
-          width: "100%",
-          height: "50px",
-          backgroundColor: "#ddd",
-          position: "absolute",
-          bottom: "50px",  // Espacement du bas
-        }}
-      >
-        <div
-          className="timeline"
-          style={{
-            width: "100%",
-            height: "100%",
-            backgroundColor: "#333",
-          }}
-        />
-      </div>
-
-      {/* Étiquette de nombre de points */}
-      <div
-        className="points-label"
-        style={{
-          position: "absolute",
-          bottom: "10px",  // Position juste au-dessus de la timeline
-          left: "50%",
-          transform: "translateX(-50%)",
-          backgroundColor: "rgba(255, 255, 255, 0.7)",
-          padding: "5px 10px",
-          borderRadius: "4px",
-          fontSize: "14px",
-        }}
-      >
-        <strong>Total : 23 zones</strong>
-      </div>
     </div>
   );
 };

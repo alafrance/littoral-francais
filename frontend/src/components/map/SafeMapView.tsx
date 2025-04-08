@@ -11,7 +11,7 @@ const SafeMapView = () => {
     return <div>Loading Map...</div>;
   }
 
-  const MapView = require("./MapView").default;
+  const MapView = require("./MapView.tsx").default;
   return <MapView />;
 };
 

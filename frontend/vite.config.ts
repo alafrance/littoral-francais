@@ -1,10 +1,13 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import path from 'path'; // Gérer les alias correctement
+import path from 'path';
+import tailwindcss from '@tailwindcss/vite'
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    tailwindcss()
+  ],
   server: {
     host: true,
     port: 5173,
@@ -18,8 +21,9 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
+    // Exclure OpenLayers du processus d'optimisation
     exclude: [
-      'ol',  // Exclure OpenLayers du processus d'optimisation
+    'ol',
     ],
   },
   build: {
@@ -31,6 +35,7 @@ export default defineConfig({
     alias: {
       react: path.resolve(__dirname, './node_modules/react'),
       'react-dom': path.resolve(__dirname, './node_modules/react-dom'),
+      '@': path.resolve(__dirname, './src'),
     },
   },
 });
