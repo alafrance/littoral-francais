@@ -1,6 +1,7 @@
-import {SidebarProvider} from "../components/ui/sidebar.tsx";
+import {SidebarProvider} from "../ui/sidebar";
 import React from "react";
-import {AppSidebar} from "../components/AppSidebar.tsx";
+import {AppSidebar} from "../components/AppSidebar";
+
 export function MainLayout({children}: {children: React.ReactNode}) {
   return (
     <div className={"min-h-screen w-screen"}>

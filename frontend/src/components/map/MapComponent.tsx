@@ -92,6 +92,8 @@ const MapComponent: React.FC<MapComponentProps> = ({pulseRedPoints = true }) => 
     });
     layersRef.current = {};
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
     activeSets.forEach((setName) => {
       if (setName === "yellow") return;
 

@@ -170,6 +170,8 @@ const MapComponent: React.FC<MapComponentProps> = ({ activeSets, year }) => {
         const response = await axios.get(`/api/yellow-points?year=${year}`);
         const yellowPoints: PointData[] = response.data;
 
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        //@ts-ignore
         yellowSource.clear();
 
         const newFeatures = yellowPoints.map(({ lon, lat, sizeKm }) => {
@@ -188,6 +190,8 @@ const MapComponent: React.FC<MapComponentProps> = ({ activeSets, year }) => {
           return feature;
         });
 
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        //@ts-ignore
         yellowSource.addFeatures(newFeatures);
       } catch (error) {
         console.error("Erreur lors du chargement des points jaunes:", error);

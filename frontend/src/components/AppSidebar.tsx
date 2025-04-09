@@ -3,9 +3,9 @@ import {
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarMenu, SidebarTrigger,
-} from "./ui/sidebar"
-import {Switch} from "./ui/switch.tsx";
+  SidebarMenu,
+} from "../ui/sidebar"
+import {Switch} from "../ui/switch";
 import {useState} from "react";
 
 export function AppSidebar() {
@@ -17,7 +17,8 @@ export function AppSidebar() {
         <SidebarGroup>
           {/*<div className="flex">*/}
             <h1 className="text-2xl mb-8 font-medium">
-              L'évolution du littoral français depuis le XXème siècle
+              L'évolution du littoral français depuis le XXème siècle <br />
+              <span className={"font-bold text-xl"}>(en cours de développement)</span>
             </h1>
           {/*</div>*/}
           <SidebarGroupContent>

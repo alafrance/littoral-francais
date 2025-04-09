@@ -73,6 +73,8 @@ export function Timeline() {
     console.log(leftX);
     const sizeContainer = containerEndX - containerStartX;
     if (leftX < 0 || leftX > sizeContainer) return;
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
     draggableRef.current.style.left = `${leftX}px`;
     setYear(calculateYear());
 
