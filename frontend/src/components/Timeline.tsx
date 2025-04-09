@@ -12,8 +12,6 @@ export function Timeline() {
   const draggableRef = useRef(null);
   const containerRef = useRef(null);
   const [isMoving, setIsMoving] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [currentX, setCurrentX] = useState(0);
   const startYear = 1900;
   const endYear = 2025;
 
@@ -57,33 +55,36 @@ export function Timeline() {
   }
 
   const handleMovementMouse = (event: MouseEvent) => {
-
-    const x = event.clientX - startX;
+    const x = event.clientX;
     handleMovementMove(x)
   }
   const handleMovementTouch = (event: any) => {
-    const x = event.touches[0].clientX - startX;
+    const x = event.touches[0].clientX;
 
     handleMovementMove(x)
   }
   const handleMovementMove = (x: number) => {
     if (!isMoving) return;
 
-    // const dimensions = calculateDimensions();
-    // const {containerStartX, containerEndX, draggableCenterX} = dimensions;
+    const dimensions = calculateDimensions();
+    const {containerStartX, containerEndX, draggableStartX, draggableEndX} = dimensions;
+    const size = x - containerStartX;
+    const leftX = size - ((draggableEndX - draggableStartX) / 2)
+    console.log(leftX);
+    const sizeContainer = containerEndX - containerStartX;
+    if (leftX < 0 || leftX > sizeContainer) return;
+    draggableRef.current.style.left = `${leftX}px`;
+    setYear(calculateYear());
 
-    draggableRef.current.style.transform = `translateX(${x}px)`;
-
+    // const clampedRatio = Math.min(1, Math.max(0, positionDraggable));
+    // const maxLeft = draggableEndX - draggableStartX ;
+    // const leftX = clampedRatio * (containerEndX - containerStartX) + containerStartX;
+    // console.log(leftX);
+    // draggableRef.current.style.left = `${100}px`;
+    // draggableRef.current.style.transform = `translateX(${x}px)`;
   }
-  const handleMovementMouseStart = (e: any) => {
+  const handleMovementStart = () => {
     setIsMoving(true);
-    setStartX(e.clientX);
-
-  }
-
-  const handleMovementTouchStart = (e: any) => {
-    setIsMoving(true);
-    setStartX(e.touches[0].clientX);
   }
 
   const handleMovementStop = () => {
@@ -96,7 +97,7 @@ export function Timeline() {
     <div className={"w-full bg-primary h-22 bottom-0 left-0 flex items-center justify-center p-2"}
          ref={containerRef}
 
-         onMouseUp={handleMovementMouse}
+         onMouseMove={handleMovementMouse}
          onTouchMove={handleMovementTouch}
 
          onMouseLeave={handleMovementStop}
@@ -109,8 +110,8 @@ export function Timeline() {
         <div className={"w-14 h-14 absolute left-0 bg-timeline-round z-10 border-white border-2 " +
           "rounded-full flex items-center justify-center text-md text-white cursor-pointer select-none"}
              ref={draggableRef}
-             onMouseDown={handleMovementMouseStart}
-             onTouchStart={handleMovementTouchStart}
+             onMouseDown={handleMovementStart}
+             onTouchStart={handleMovementStart}
         >
           {year}
         </div>

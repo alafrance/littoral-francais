@@ -1,4 +1,4 @@
-import {SidebarProvider, SidebarTrigger} from "../components/ui/sidebar.tsx";
+import {SidebarProvider} from "../components/ui/sidebar.tsx";
 import React from "react";
 import {AppSidebar} from "../components/AppSidebar.tsx";
 export function MainLayout({children}: {children: React.ReactNode}) {
