@@ -8,6 +8,7 @@ export default defineConfig({
     react(),
     tailwindcss()
   ],
+  base: "/42-Gaia",
   resolve: {
     alias: {
       "~": path.resolve(__dirname, "./src"),
