@@ -1,14 +1,12 @@
-import React from "react";
-import MapComponent from "./components/map/MapComponent.tsx";
+import {Map} from "./components/Map.tsx";
 import {Timeline} from "./components/Timeline.tsx";
 import {MainLayout} from "./layouts/MainLayout.tsx";
 
-const App: React.FC = () => {
+const App = () => {
   return (
     <MainLayout>
       <main className={"w-full h-full flex flex-col "}>
-        {/*<SidebarTrigger />*/}
-        <MapComponent/>
+        <Map/>
         <Timeline/>
       </main>
     </MainLayout>

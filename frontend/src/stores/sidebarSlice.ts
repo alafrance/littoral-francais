@@ -1,23 +1,33 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+export enum SidebarName {
+  GLOBAL = 'global',
+  STATIONS = 'stations',
+  TEMPETE = 'tempete',
+  SUBMERSIONS = 'submersions',
+}
 const sidebarSlice = createSlice({
   name: 'sidebar',
   initialState: {
-    activeSets: ["yellow"]
+    global: true,
+    stations: true,
+    tempete: true,
+    submersions: true,
   },
   reducers: {
-    handleItemClick: (state, action) => {
-      if (action.payload === "global") {
-        state.activeSets = ["yellow", "red", "violet"];
+    setInfoSidebar: (state, action) => {
+      if (action.payload.name === SidebarName.GLOBAL) {
+        state.global = action.payload.value
+        state.stations = action.payload.value
+        state.tempete = action.payload.value
+        state.submersions = action.payload.value
       } else {
-        state.activeSets = [action.payload]
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
+        state[action.payload.name] = action.payload.value
       }
-    },
-    setActiveSets: (state, action) => {
-      state.activeSets = action.payload
-    },
+    }
   },
 })
-
-export const { handleItemClick, setActiveSets } = sidebarSlice.actions
+export const { setInfoSidebar } = sidebarSlice.actions
 export default sidebarSlice.reducer

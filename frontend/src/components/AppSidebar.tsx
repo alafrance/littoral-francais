@@ -6,40 +6,36 @@ import {
   SidebarMenu,
 } from "../ui/sidebar"
 import {Switch} from "../ui/switch";
-import {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {setInfoSidebar as setInfoSidebarSlice, SidebarName} from "../stores/sidebarSlice";
 
 export function AppSidebar() {
-  const [isGlobal, setIsGlobal] = useState(true)
-  const [isStations, setIsStations] = useState(true)
-  const [isTempete, setIsTempete] = useState(true)
-  const [isSubmersions, setIsSubmersions] = useState(true)
 
-  const setIsGlobalHandler = (value: boolean) => {
-    setIsGlobal(value)
-    setIsStations(value)
-    setIsTempete(value)
-    setIsSubmersions(value)
+  const sidebar = useSelector((state: any) => state.sidebar);
+  const dispatch = useDispatch();
+  const setInfoSidebar = (name: string, value: boolean) => {
+    dispatch(setInfoSidebarSlice({name, value}))
   }
   const items = [
     {
       name: "Global",
-      value: isGlobal,
-      setValue: setIsGlobalHandler,
+      value: sidebar.global,
+      setValue: (value: boolean) => setInfoSidebar(SidebarName.GLOBAL, value),
     },
     {
       name: "Stations Météo",
-      value: isStations,
-      setValue: setIsStations,
+      value: sidebar.stations,
+      setValue: (value: boolean) => setInfoSidebar(SidebarName.STATIONS, value),
     },
     {
       name: "Tempêtes",
-      value: isTempete,
-      setValue: setIsTempete,
+      value: sidebar.tempete,
+      setValue: (value: boolean) => setInfoSidebar(SidebarName.TEMPETE, value),
     },
     {
       name: "Submersions",
-      value: isSubmersions,
-      setValue: setIsSubmersions,
+      value: sidebar.submersions,
+      setValue: (value: boolean) => setInfoSidebar(SidebarName.SUBMERSIONS, value),
     }
   ]
   return (
