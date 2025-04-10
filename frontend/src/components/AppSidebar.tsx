@@ -11,6 +11,37 @@ import {useState} from "react";
 export function AppSidebar() {
   const [isGlobal, setIsGlobal] = useState(true)
   const [isStations, setIsStations] = useState(true)
+  const [isTempete, setIsTempete] = useState(true)
+  const [isSubmersions, setIsSubmersions] = useState(true)
+
+  const setIsGlobalHandler = (value: boolean) => {
+    setIsGlobal(value)
+    setIsStations(value)
+    setIsTempete(value)
+    setIsSubmersions(value)
+  }
+  const items = [
+    {
+      name: "Global",
+      value: isGlobal,
+      setValue: setIsGlobalHandler,
+    },
+    {
+      name: "Stations Météo",
+      value: isStations,
+      setValue: setIsStations,
+    },
+    {
+      name: "Tempêtes",
+      value: isTempete,
+      setValue: setIsTempete,
+    },
+    {
+      name: "Submersions",
+      value: isSubmersions,
+      setValue: setIsSubmersions,
+    }
+  ]
   return (
     <Sidebar>
       <SidebarContent className="p-2 text-white bg-primary border-0">
@@ -23,22 +54,17 @@ export function AppSidebar() {
           {/*</div>*/}
           <SidebarGroupContent>
             <SidebarMenu>
-              <div className="flex justify-between items-center mb-12">
-                <p className="text-xl">Global</p>
-                <Switch
-                  checked={isGlobal}
-                  onCheckedChange={setIsGlobal}
-                  className={"cursor-pointer data-[state=checked]:bg-switch"}
-                />
-              </div>
-              <div className={"flex justify-between items-center mb-12"}>
-                <p className="text-lg">Stations Météo</p>
-                <Switch
-                  checked={isStations}
-                  onCheckedChange={setIsStations}
-                  className={"cursor-pointer data-[state=checked]:bg-switch"}
-                />
-              </div>
+              {items.map((item) => (
+                <div key={item.name} className={"flex justify-between items-center " +
+                (item.name === "Global" ? "mb-12" : "mb-2")}>
+                  <p className="text-lg">{item.name}</p>
+                  <Switch
+                    checked={item.value}
+                    onCheckedChange={item.setValue}
+                    className={"cursor-pointer data-[state=checked]:bg-switch"}
+                  />
+                </div>
+              ))}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
