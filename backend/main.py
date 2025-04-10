@@ -6,7 +6,8 @@ df = pd.read_csv("csv/stations_infos.csv")
 
 origins = [
     "http://localhost:5173",
-    "https://alafrance.github.io/42-Gaia/"
+    "https://alafrance.github.io",
+    "http://alafrance.github.io"
 ]
 
 app.add_middleware(
