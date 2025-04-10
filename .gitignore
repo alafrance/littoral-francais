@@ -6,7 +6,6 @@ __pycache__
 # Project directories and files
 node_modules/
 backend/env/
-dist
 dist-ssr
 *.local
 '#_'*
