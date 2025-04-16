@@ -7,5 +7,5 @@ export const getStations = async () => {
 
 export const getStation = async (id: string) => {
   const response = await api.get(`/stations/${id}`);
-  return response.data;
+  return response.data.filter((data: StationData) => data.TN !== "None" && data.TX !== "None" && data.TM !== "None");
 }

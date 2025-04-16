@@ -12,19 +12,19 @@ export function useStations() {
   return stations;
 }
 
-export function useStation(id: string, enable: boolean) {
+export function useStation(id: string) {
   const [station, setStation] = useState(null as StationData[] | null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!id || !enable) return;
-    setLoading(true);
+    if (!id) {
+      setStation(null);
+      return;
+    }
 
     getStation(id)
     .then((res) => setStation(res))
 
-    setLoading(false);
-  }, [id, enable]);
+  }, [id]);
 
-  return {station, loading};
+  return station;
 }

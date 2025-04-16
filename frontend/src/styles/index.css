@@ -4,6 +4,7 @@
 
 @theme {
   --color-primary: oklch(0.24 0.0312 273.09);
+  --color-primary-variant: oklch(0.4 0.0988 281.78);
   --font-display: "Inter", "sans-serif";
   --color-switch: oklch(0.45 0.1033 260.44);
   --color-timeline-round: oklch(0.21 0.0259 73.57);
