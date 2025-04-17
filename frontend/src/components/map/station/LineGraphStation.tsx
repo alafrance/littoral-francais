@@ -16,7 +16,7 @@ export function LineGraphStation({stationData,
 
 }: {
   stationData: FilterStationDataValue[] | null, startAvailableYear: number, endAvailableYear: number, width?: number, height?: number,
-  marginTop?: number, marginRight?: number, marginBottom?: number, marginLeft?: number, titleText: string, colorLine: string, offsetY: number | undefined
+  marginTop?: number, marginRight?: number, marginBottom?: number, marginLeft?: number, titleText: string, colorLine: string, offsetY?: number
 }) {
   const refTemp = useRef<SVGSVGElement>(null);
   const tooltip = d3.select(".tooltip");
@@ -29,7 +29,7 @@ export function LineGraphStation({stationData,
     )
     .style("opacity", 1)
   }
-  const d3Line = useD3Line(stationData, refTemp, tooltip, updateTooltip, width, height, marginLeft, marginRight, marginTop, marginBottom, startAvailableYear, endAvailableYear, colorLine, offsetY);
+  const d3Line = useD3Line(stationData, refTemp, updateTooltip, width, height, marginLeft, marginRight, marginTop, marginBottom, startAvailableYear, endAvailableYear, colorLine, offsetY);
   const {linearRes } = d3Line;
   return (
     <>

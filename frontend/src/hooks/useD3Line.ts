@@ -1,13 +1,12 @@
 import {useEffect, useState} from "react";
 import * as d3 from "d3";
 import {localeFR} from "../lib/utils.ts";
-import {BaseType, NumberValue} from "d3";
+import {NumberValue} from "d3";
 import {FilterStationDataValue} from "../components/map/station/CardStation.tsx";
 import {getLinearRegression, ResLinearRegression} from "../api/linearRegressionApi.ts";
 
 export const useD3Line = (stationData: FilterStationDataValue[] | null,
                           refSvg: React.RefObject<SVGSVGElement | null>,
-                          tooltip: d3.Selection<BaseType, unknown, HTMLElement, any>,
                           updateTooltip: (temp: number, date: Date) => void,
                           width: number, height: number,
                           marginLeft: number, marginRight: number, marginTop: number, marginBottom: number,
