@@ -1,13 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import sidebarReducer from './sidebarSlice'
-import timelineReducer from "./TimelineSlice";
-import mapReducer from "./mapSlice.ts";
+import stationReducer from "./stationSlice.ts";
 
 const store = configureStore({
   reducer: {
     sidebar: sidebarReducer,
-    timeline: timelineReducer,
-    map: mapReducer
+    station: stationReducer
   },
 })
 

@@ -7,8 +7,8 @@ interface Station {
 interface StationData extends Station {
   date: string;
   alt: number;
-  TN: number;
-  TX: number;
-  TM: number;
-  RR: number;
+  TN: number | "None";
+  TX: number | "None";
+  TM: number | "None";
+  RR: number | "None";
 }

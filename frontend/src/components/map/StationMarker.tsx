@@ -4,12 +4,12 @@ import ReactDOMServer from "react-dom/server";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTemperatureHalf} from "@fortawesome/free-solid-svg-icons";
 import {useDispatch} from "react-redux";
-import {setStationId as setStationIdSlice} from "../../stores/mapSlice.ts";
+import {setId as setIdSlice} from "../../stores/stationSlice.ts";
 
 export function StationMarker({station}: {station: Station}) {
   const dispatch = useDispatch();
   const setStationId = (id: string) => {
-    dispatch(setStationIdSlice(id));
+    dispatch(setIdSlice(id));
   }
   const iconHTML = ReactDOMServer.renderToString(
     <FontAwesomeIcon icon={faTemperatureHalf} size="2x" className={"text-primary"} />

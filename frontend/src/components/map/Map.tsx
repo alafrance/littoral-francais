@@ -12,7 +12,7 @@ import {CardStation} from "./station/CardStation.tsx";
 export function Map() {
   const stations = useStations();
   const sidebar = useSelector((state: any) => state.sidebar);
-  const map = useSelector((state: any) => state.map);
+  const station = useSelector((state: any) => state.station);
 
   return (
     <div className={"w-full flex-1 relative"}>
@@ -29,7 +29,7 @@ export function Map() {
           ))}
         </MarkerClusterGroup>
       </MapContainer>
-      {map.stationId && (
+      {station.id && (
         <CardStation />
       )}
     </div>

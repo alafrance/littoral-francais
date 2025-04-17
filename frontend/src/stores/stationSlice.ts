@@ -1,15 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const timelineSlice = createSlice({
-  name: 'timeline',
+const stationSlicer = createSlice({
+  name: 'station',
   initialState: {
-    year: null,
+    id: null,
     startAvailableYear: null,
     endAvailableYear: null,
   },
   reducers: {
-    setYear: (state, action) => {
-      state.year = action.payload
+    setId: (state, action) => {
+      state.id = action.payload
     },
     setAvailableYears: (state, action) => {
       state.startAvailableYear = action.payload.startAvailableYear
@@ -17,6 +17,5 @@ const timelineSlice = createSlice({
     }
   },
 })
-
-export const { setYear, setAvailableYears } = timelineSlice.actions
-export default timelineSlice.reducer
+export const { setId, setAvailableYears } = stationSlicer.actions
+export default stationSlicer.reducer

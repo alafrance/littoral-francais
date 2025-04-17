@@ -15,6 +15,7 @@ bokeh==3.7.2
 boto3==1.37.28
 botocore==1.37.28
 Bottleneck==1.4.2
+branca==0.8.1
 Cartopy==0.24.1
 certifi==2025.1.31
 cffi==1.17.1
@@ -41,6 +42,7 @@ fasteners==0.19
 fastjsonschema==2.21.1
 flake8==7.2.0
 flox==0.10.2
+folium==0.19.5
 fonttools==4.57.0
 fqdn==1.5.1
 fsspec==2025.3.2
@@ -59,6 +61,7 @@ isoduration==20.11.0
 jedi==0.19.2
 Jinja2==3.1.6
 jmespath==1.0.1
+joblib==1.4.2
 json5==0.11.0
 jsonpointer==3.0.0
 jsonschema==4.23.0
@@ -142,6 +145,7 @@ rich==14.0.0
 rich-toolkit==0.14.1
 rpds-py==0.24.0
 s3transfer==0.11.4
+scikit-learn==1.6.1
 scipy==1.15.2
 seaborn==0.13.2
 semver==3.0.4
@@ -158,6 +162,7 @@ stack-data==0.6.3
 starlette==0.46.1
 tblib==3.1.0
 terminado==0.18.1
+threadpoolctl==3.6.0
 tinycss2==1.4.0
 toolz==1.0.0
 tornado==6.4.2

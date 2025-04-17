@@ -75,6 +75,24 @@ async def get_station_info_by_id(station_id: int):
     return station.to_dict(orient="records")
 
 
+@app.post('/linear-regression')
+def create_linear_regression(data: dict):
+    from sklearn.linear_model import LinearRegression
+    import numpy as np
+
+    value = data.get("data")
+    X = np.array([point["x"] for point in value]).reshape(-1, 1)
+    y = np.array([point["y"] for point in value])
+    reg = LinearRegression().fit(X, y)
+    a = reg.coef_[0]
+    b = reg.intercept_
+    return {
+        "a": a,
+        "b": b,
+        "r_squared": reg.score(X, y),
+    }
+
+
 def convert_to_float_and_replace(station, columns):
     for column in columns:
         station[column] = station[column].apply(lambda x: str(x).replace(",", ".") if pd.notna(x) else x)
