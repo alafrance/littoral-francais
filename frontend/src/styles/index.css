@@ -9,4 +9,6 @@
   --color-switch: oklch(0.45 0.1033 260.44);
   --color-timeline-round: oklch(0.21 0.0259 73.57);
   --color-timeline-bg: oklch(0.43 0.0606 284.81);
+  --color-sidebar-accent: oklch(0.3 0.0312 273.09);
+  --color-sidebar-accent-foreground: oklch(1 0 0);
 }

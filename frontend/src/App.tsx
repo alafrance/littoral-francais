@@ -1,12 +1,15 @@
-import {Map} from "./components/map/Map.tsx";
 import {MainLayout} from "./layouts/MainLayout.tsx";
+import {Route, Routes} from "react-router";
+import {Map} from "./components/map/Map.tsx";
+import {Report} from "./components/report/Report.tsx";
 
 const App = () => {
   return (
     <MainLayout>
-      <main className={"w-full h-full flex flex-col "}>
-        <Map/>
-      </main>
+      <Routes>
+        <Route path={"/42-Gaia"} element={<Map />} />
+        <Route path={"/42-Gaia/report"} element={<Report />} />
+      </Routes>
     </MainLayout>
   );
 };
