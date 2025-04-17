@@ -40,27 +40,31 @@ export function LineGraphStation({stationData,
         <div className={"mt-2 border-2 border-gray-300 rounded-md p-2 shadow-md z-10 cursor-default w-44 text-xs absolute left-12 top-2 tooltipTemp"}
              style={{opacity: 0}}
         />
-        <div className={"mt-2 border-2 border-gray-300 rounded-md p-2 shadow-md z-10 w-auto text-sm absolute left-12 top-2 bg-white"}>
-          <div className={"flex items-center"}>
-            <div className={"w-5 h-0.5 mr-2 border-t-2 border-red-600 border-dashed"} />
-            Projection linéaire des données (y = {linearRes?.a.toExponential(2)} x + {linearRes?.b.toFixed(1)})
-          </div>
-          <div className={"mt-4 flex items-center"}>
-            <div
-              className={`w-5 h-0.5 mr-2 border-t-2 border-dashed`}
-              style={{
-                borderColor: colorLine,
-              }}
-            />
-            Données station
-          </div>
-        </div>
-
         {stationData && stationData.length > 0 ? (
-          <svg ref={refTemp}/>
+          <>
+            {/*Legend */}
+            <div className={"mt-2 border-2 border-gray-300 rounded-md p-2 shadow-md z-10 w-auto text-sm absolute left-12 top-2 bg-white"}>
+              <div className={"flex items-center"}>
+                <div className={"w-5 h-0.5 mr-2 border-t-2 border-red-600 border-dashed"} />
+                Projection linéaire des données (y = {linearRes?.a.toExponential(2)} x + {linearRes?.b.toFixed(1)})
+              </div>
+              <div className={"mt-4 flex items-center"}>
+                <div
+                  className={`w-5 h-0.5 mr-2 border-t-2 border-dashed`}
+                  style={{
+                    borderColor: colorLine,
+                  }}
+                />
+                Données station
+              </div>
+            </div>
+
+            {/*  Svg*/}
+            <svg ref={refTemp}/>
+          </>
         ) : (
-          <p className={"mt-4"}>
-            Aucune donnée disponible pour cette station
+          <p className={"mt-4 ml-2"}>
+            Aucune donnée disponible
           </p>
         )}
       </div>
