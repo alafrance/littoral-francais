@@ -1,9 +1,7 @@
 export function Report() {
   return (
-    <>
-        <h1>
-            Voici la page de rapport global du projet
-        </h1>
-    </>
+    <div className={"container mx-auto px-12  mt-12"}>
+      <h1>Rapport globales du projet</h1>
+    </div>
   )
 }
