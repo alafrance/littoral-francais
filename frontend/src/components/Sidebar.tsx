@@ -53,12 +53,12 @@ export function Sidebar() {
           {
             title: "Carte",
             icon: faMap,
-            url: "/42-Gaia"
+            url: "/littoral-francais"
           },
           {
             title: "Rapport global",
             icon: faChartSimple,
-            url: "/42-Gaia/report"
+            url: "/littoral-francais/report"
           }
         ]
     }
