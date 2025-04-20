@@ -1,6 +1,9 @@
 from fastapi import FastAPI
 import pandas as pd
 from fastapi.middleware.cors import CORSMiddleware
+from sklearn.linear_model import LinearRegression
+import numpy as np
+
 app = FastAPI()
 df = pd.read_csv("csv/stations_infos.csv")
 
@@ -77,9 +80,6 @@ async def get_station_info_by_id(station_id: int):
 
 @app.post('/linear-regression')
 def create_linear_regression(data: dict):
-    from sklearn.linear_model import LinearRegression
-    import numpy as np
-
     value = data.get("data")
     X = np.array([point["x"] for point in value]).reshape(-1, 1)
     y = np.array([point["y"] for point in value])
